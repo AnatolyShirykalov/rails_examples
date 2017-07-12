@@ -1,0 +1,9 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: rails_examples_development
+  pool: 5
+  host: 'localhost'
+  username: rails_examples
+  password: rails_examples
+  template: template0

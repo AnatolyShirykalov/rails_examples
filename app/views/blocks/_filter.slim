@@ -1,0 +1,4 @@
+.container.row
+  - @filter.props.each do |name, prop|
+    = render partial: 'blocks/filter_item', locals: {prop: name, values: prop.values, kind: :toggle}
+

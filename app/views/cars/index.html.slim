@@ -1,0 +1,9 @@
+= render partial: 'blocks/filter'
+= paginate @cars, theme: 'twitter-bootstrap-4'
+- @cars.each do |car|
+  = link_to car do
+    .row
+      span.col-sm-4 #{car.name}
+      span.col-sm-4 #{car.price}
+= paginate @cars, theme: 'twitter-bootstrap-4'
+

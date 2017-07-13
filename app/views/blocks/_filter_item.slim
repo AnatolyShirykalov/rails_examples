@@ -1,0 +1,9 @@
+span class="col-sm-#{@filter.props.keys.size > 5 ?  2 : 4}"
+  .row
+    strong.text-center.col-sm-12 #{prop}
+  ul
+    - values.each do |value|
+      li
+        = link_to @filter.path(prop, value.slug, kind) do
+          input type="checkbox" *{"#{@filter.checked?(prop, value.slug)}" => ''}
+            = value.name

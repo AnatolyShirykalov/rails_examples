@@ -1,4 +1,22 @@
 ru:
+  activerecord:
+    models:
+      property: свойство
+      value: значение
+      car: автомобиль
+      recipe: рецепт
+    attributes:
+      property:
+        values: Значения
+      value:
+        property: Свойство
+        recipes: Рецепты
+        cars: Автомобили
+      car:
+        values: Свойства
+        price: Цена
+      recipe:
+        values: Свойства
   attributes:
     is_default: По умолчанию
   mongoid:

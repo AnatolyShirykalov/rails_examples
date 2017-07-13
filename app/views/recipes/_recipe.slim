@@ -1,0 +1,8 @@
+.row
+  strong.col-sm-12 #{recipe.name}
+br
+- recipe.values.each do |value|
+  .row
+    span.col-sm-4 #{value.property.name}
+    span.col-sm-8 #{value.name}
+

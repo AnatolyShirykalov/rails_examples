@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :cars, only: %i[index show]
+  resources :recipes, only: %i[index show]
+
   devise_for :users
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   mount Ckeditor::Engine => '/ckeditor'

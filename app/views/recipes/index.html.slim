@@ -1,0 +1,8 @@
+= render partial: 'blocks/filter'
+= paginate @recipes, theme: 'twitter-bootstrap-4'
+- @recipes.each do |recipe|
+  = link_to recipe
+    .row
+      span.col-sm-4 #{recipe.name}
+= paginate @recipes, theme: 'twitter-bootstrap-4'
+

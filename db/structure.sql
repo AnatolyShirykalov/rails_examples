@@ -40,6 +40,39 @@ CREATE TABLE ar_internal_metadata (
 
 
 --
+-- Name: cars; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE cars (
+    id bigint NOT NULL,
+    name character varying,
+    description text,
+    price integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: cars_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE cars_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: cars_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE cars_id_seq OWNED BY cars.id;
+
+
+--
 -- Name: ckeditor_assets; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -269,6 +302,72 @@ ALTER SEQUENCE pages_id_seq OWNED BY pages.id;
 
 
 --
+-- Name: properties; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE properties (
+    id bigint NOT NULL,
+    name character varying,
+    slug character varying,
+    sort integer DEFAULT 0 NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: properties_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE properties_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: properties_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE properties_id_seq OWNED BY properties.id;
+
+
+--
+-- Name: property_assignments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE property_assignments (
+    id bigint NOT NULL,
+    valueable_type character varying,
+    valueable_id bigint,
+    value_id bigint,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: property_assignments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE property_assignments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: property_assignments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE property_assignments_id_seq OWNED BY property_assignments.id;
+
+
+--
 -- Name: rails_admin_settings; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -308,6 +407,37 @@ CREATE SEQUENCE rails_admin_settings_id_seq
 --
 
 ALTER SEQUENCE rails_admin_settings_id_seq OWNED BY rails_admin_settings.id;
+
+
+--
+-- Name: recipes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE recipes (
+    id bigint NOT NULL,
+    name character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: recipes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE recipes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: recipes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE recipes_id_seq OWNED BY recipes.id;
 
 
 --
@@ -442,6 +572,44 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
+-- Name: values; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE "values" (
+    id bigint NOT NULL,
+    name character varying,
+    slug character varying,
+    sort integer DEFAULT 0 NOT NULL,
+    icon_file_name character varying,
+    icon_content_type character varying,
+    icon_file_size integer,
+    icon_updated_at timestamp without time zone,
+    property_id bigint,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: values_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE values_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: values_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE values_id_seq OWNED BY "values".id;
+
+
+--
 -- Name: versions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -473,6 +641,13 @@ CREATE SEQUENCE versions_id_seq
 --
 
 ALTER SEQUENCE versions_id_seq OWNED BY versions.id;
+
+
+--
+-- Name: cars id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY cars ALTER COLUMN id SET DEFAULT nextval('cars_id_seq'::regclass);
 
 
 --
@@ -518,10 +693,31 @@ ALTER TABLE ONLY pages ALTER COLUMN id SET DEFAULT nextval('pages_id_seq'::regcl
 
 
 --
+-- Name: properties id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY properties ALTER COLUMN id SET DEFAULT nextval('properties_id_seq'::regclass);
+
+
+--
+-- Name: property_assignments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY property_assignments ALTER COLUMN id SET DEFAULT nextval('property_assignments_id_seq'::regclass);
+
+
+--
 -- Name: rails_admin_settings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY rails_admin_settings ALTER COLUMN id SET DEFAULT nextval('rails_admin_settings_id_seq'::regclass);
+
+
+--
+-- Name: recipes id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY recipes ALTER COLUMN id SET DEFAULT nextval('recipes_id_seq'::regclass);
 
 
 --
@@ -546,6 +742,13 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 
 --
+-- Name: values id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY "values" ALTER COLUMN id SET DEFAULT nextval('values_id_seq'::regclass);
+
+
+--
 -- Name: versions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -558,6 +761,14 @@ ALTER TABLE ONLY versions ALTER COLUMN id SET DEFAULT nextval('versions_id_seq':
 
 ALTER TABLE ONLY ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: cars cars_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY cars
+    ADD CONSTRAINT cars_pkey PRIMARY KEY (id);
 
 
 --
@@ -609,11 +820,35 @@ ALTER TABLE ONLY pages
 
 
 --
+-- Name: properties properties_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY properties
+    ADD CONSTRAINT properties_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: property_assignments property_assignments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY property_assignments
+    ADD CONSTRAINT property_assignments_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: rails_admin_settings rails_admin_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY rails_admin_settings
     ADD CONSTRAINT rails_admin_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: recipes recipes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY recipes
+    ADD CONSTRAINT recipes_pkey PRIMARY KEY (id);
 
 
 --
@@ -649,6 +884,14 @@ ALTER TABLE ONLY users
 
 
 --
+-- Name: values values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY "values"
+    ADD CONSTRAINT values_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: versions versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -675,6 +918,13 @@ CREATE INDEX idx_ckeditor_assetable_type ON ckeditor_assets USING btree (assetab
 --
 
 CREATE INDEX idx_key ON simple_captcha_data USING btree (key);
+
+
+--
+-- Name: index_cars_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_cars_on_name ON cars USING btree (name);
 
 
 --
@@ -755,6 +1005,34 @@ CREATE UNIQUE INDEX index_pages_on_slug ON pages USING btree (slug);
 
 
 --
+-- Name: index_properties_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_properties_on_name ON properties USING btree (name);
+
+
+--
+-- Name: index_properties_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_properties_on_slug ON properties USING btree (slug);
+
+
+--
+-- Name: index_property_assignments_on_value_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_property_assignments_on_value_id ON property_assignments USING btree (value_id);
+
+
+--
+-- Name: index_property_assignments_on_valueable_type_and_valueable_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_property_assignments_on_valueable_type_and_valueable_id ON property_assignments USING btree (valueable_type, valueable_id);
+
+
+--
 -- Name: index_rails_admin_settings_on_key; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -766,6 +1044,13 @@ CREATE INDEX index_rails_admin_settings_on_key ON rails_admin_settings USING btr
 --
 
 CREATE UNIQUE INDEX index_rails_admin_settings_on_ns_and_key ON rails_admin_settings USING btree (ns, key);
+
+
+--
+-- Name: index_recipes_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_recipes_on_name ON recipes USING btree (name);
 
 
 --
@@ -804,6 +1089,20 @@ CREATE UNIQUE INDEX index_users_on_unlock_token ON users USING btree (unlock_tok
 
 
 --
+-- Name: index_values_on_property_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_values_on_property_id ON "values" USING btree (property_id);
+
+
+--
+-- Name: index_values_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_values_on_slug ON "values" USING btree (slug);
+
+
+--
 -- Name: index_versions_on_item_type_and_item_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -816,6 +1115,14 @@ CREATE INDEX index_versions_on_item_type_and_item_id ON versions USING btree (it
 
 ALTER TABLE ONLY menus_pages
     ADD CONSTRAINT fk_rails_2d8026bba5 FOREIGN KEY (page_id) REFERENCES pages(id) ON DELETE CASCADE;
+
+
+--
+-- Name: property_assignments fk_rails_b761aed2e1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY property_assignments
+    ADD CONSTRAINT fk_rails_b761aed2e1 FOREIGN KEY (value_id) REFERENCES "values"(id);
 
 
 --
@@ -842,6 +1149,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170712181029'),
 ('20170712181030'),
 ('20170712181031'),
-('20170712181032');
+('20170712181032'),
+('20170713092903'),
+('20170713093039'),
+('20170713093525'),
+('20170713093713'),
+('20170713135346');
 
 

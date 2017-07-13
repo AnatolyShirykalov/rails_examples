@@ -1,0 +1,9 @@
+.row
+  span.col-sm-4 #{car.name}
+  span.col-sm-4 #{car.price}
+br
+- car.values.each do |value|
+  .row
+    span.col-sm-4 #{value.property.name}
+    span.col-sm-4 #{value.name}
+

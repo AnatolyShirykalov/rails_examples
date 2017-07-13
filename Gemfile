@@ -24,6 +24,9 @@ gem 'puma'
 gem 'x-real-ip'
 gem 'sentry-raven'
 
+gem 'rs_russian'
+gem 'ffaker'
+
 gem 'uglifier'
 
 # windows
@@ -31,8 +34,8 @@ gem 'tzinfo-data' if Gem.win_platform?
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 
 group :development do
+  gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'better_errors', github: 'charliesome/better_errors'
   gem 'pry-rails'
   gem 'listen'
   gem 'spring'
@@ -50,7 +53,6 @@ group :test do
   gem 'database_cleaner'
   gem 'email_spec'
   
-  gem 'ffaker'
   gem 'factory_girl_rails'
 end
 

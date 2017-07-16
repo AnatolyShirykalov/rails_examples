@@ -9,7 +9,10 @@ gem 'rocket_cms_activerecord'
 gem 'rails_admin', github: 'crowdtask/rails_admin'
 
 gem 'slim'
+gem 'slim-rails'
 gem 'haml'
+
+gem 'bootstrap4-kaminari-views'
 
 gem 'sass-rails'
 gem 'webpack-rails'

@@ -40,7 +40,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-rails'
-  gem 'listen'
+  gem 'listen', '>= 3.1.5'
   gem 'spring'
 
   gem 'capistrano', require: false

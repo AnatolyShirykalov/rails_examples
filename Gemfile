@@ -1,18 +1,18 @@
 source 'https://rubygems.org'
 
-gem 'rails', '5.1.1'
+gem 'rails', '5.1.6.1'
 gem 'pg'
 
 gem 'sass'
 
-gem 'rocket_cms_activerecord'
+gem 'rocket_cms_activerecord', '>= 0.19.4'
 gem 'rails_admin', github: 'crowdtask/rails_admin'
 
 gem 'slim'
 gem 'slim-rails'
 gem 'haml'
 
-gem 'bootstrap4-kaminari-views'
+gem 'bootstrap4-kaminari-views', '>= 1.0.0'
 
 gem 'sass-rails'
 gem 'webpack-rails'
